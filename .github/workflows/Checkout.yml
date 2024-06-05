@@ -19,10 +19,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    # Constructing Cucumber tags dynamically
+    - name: Set Cucumber Tags
+      id: set_tags
+      run: echo "::set-output name=tags::$(echo '@Regression or @Smoke')"
+
     - name: Build and test with Maven
-      run: mvn clean test
-      env:
-        CUCUMBER_TAGS: "@Regression or @Smoke"
+      run: mvn clean test -Dcucumber.filter.tags="${{ steps.set_tags.outputs.tags }}"
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
