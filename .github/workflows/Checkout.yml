@@ -1,4 +1,4 @@
-name: Java CI with Maven using Tag Name
+name: Java CI with Maven in checkout
 
 on:
   push:
