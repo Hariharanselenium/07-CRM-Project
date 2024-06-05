@@ -1,4 +1,4 @@
-name: Java CI with Maven in checkout
+name: Java CI with Maven
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build and test with Maven
-      run: mvn -B test -Dcucumber.filter.tags="@checkout" --file pom.xml
+      run: mvn clean test -Dcucumber.filter.tags="@checkout" --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
