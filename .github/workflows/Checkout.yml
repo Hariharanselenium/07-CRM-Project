@@ -26,7 +26,7 @@ jobs:
         run: echo "CUCUMBER_TAGS=${{ env.CUCUMBER_TAGS }}"
 
       - name: Build and test with Maven
-        run: mvn clean test 
+        run: mvn clean test -DsuiteXmlFile=src/test/resources/suites/SuiteFeatureLoginCMS.xml 
 
       # Optional: Upload the full dependency graph to improve Dependabot alerts
       - name: Update dependency graph
