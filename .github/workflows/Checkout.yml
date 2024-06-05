@@ -25,7 +25,7 @@ jobs:
       - name: Debug Environment Variables
         run: echo "CUCUMBER_TAGS=${{ env.CUCUMBER_TAGS }}"
 
-     - name: Build and test with Maven
+      - name: Build and test with Maven
         run: mvn clean test -Dtestng.suiteXmlFiles=src/test/resources/suites/SuiteFeatureLoginCMS.xml
 
 
