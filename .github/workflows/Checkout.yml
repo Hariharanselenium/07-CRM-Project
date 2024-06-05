@@ -11,6 +11,9 @@ jobs:
 
     runs-on: windows-latest
 
+    env:
+      CUCUMBER_TAGS: '@Regression'
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -20,14 +23,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Set Cucumber Tags
-      run: echo "CUCUMBER_TAGS=@Regression" >> $GITHUB_ENV
-
     - name: Debug Environment Variables
       run: echo "CUCUMBER_TAGS=${{ env.CUCUMBER_TAGS }}"
 
     - name: Build and test with Maven
-      run: mvn clean test -Dcucumber.options="--tags ${{ env.CUCUMBER_TAGS }}"
+      run: mvn clean test -Dcucumber.filter.tags=${{ env.CUCUMBER_TAGS }}
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
